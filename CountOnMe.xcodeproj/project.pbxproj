@@ -13,8 +13,8 @@
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
 		E960051D233267280009507C /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960051C233267280009507C /* Calculation.swift */; };
 		E960051F2332682F0009507C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E960051E2332682F0009507C /* Default-568h@2x.png */; };
-		E96005222332688F0009507C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E96005202332688F0009507C /* Main.storyboard */; };
 		E960054923326CD10009507C /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960054823326CD10009507C /* CountOnMeTests.swift */; };
+		E96005522332713D0009507C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E96005502332713D0009507C /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +36,10 @@
 		1FA43BDE224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E960051C233267280009507C /* Calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
 		E960051E2332682F0009507C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E96005212332688F0009507C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../CountOnMe/CountOnMe/View/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E960054623326CD10009507C /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E960054823326CD10009507C /* CountOnMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeTests.swift; sourceTree = "<group>"; };
 		E960054A23326CD10009507C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E96005512332713D0009507C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../../../../Desktop/CountOnMe/CountOnMe/View/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 		E960051A233266CC0009507C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E96005202332688F0009507C /* Main.storyboard */,
+				E96005502332713D0009507C /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 				1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */,
 				E960051F2332682F0009507C /* Default-568h@2x.png in Resources */,
 				1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */,
-				E96005222332688F0009507C /* Main.storyboard in Resources */,
+				E96005522332713D0009507C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,10 +269,10 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		E96005202332688F0009507C /* Main.storyboard */ = {
+		E96005502332713D0009507C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E96005212332688F0009507C /* Base */,
+				E96005512332713D0009507C /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
