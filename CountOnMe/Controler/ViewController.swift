@@ -63,11 +63,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedClear(_ sender: UIButton) {
-        if sender.currentTitle == "AC" {
             negativeButton.tag = 0
             textView.text.removeAll()
             calculation.numberString.removeAll()
-        }
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
@@ -91,6 +89,7 @@ class ViewController: UIViewController {
     
     private func checkExpressionHaveResult() {
         if calculation.expressionHaveResult {
+            negativeButton.tag = 0 
             textView.text.removeAll()
             calculation.numberString.removeAll()
         }

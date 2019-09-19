@@ -14,7 +14,7 @@
 		E960051D233267280009507C /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960051C233267280009507C /* Calculation.swift */; };
 		E960051F2332682F0009507C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E960051E2332682F0009507C /* Default-568h@2x.png */; };
 		E960054923326CD10009507C /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960054823326CD10009507C /* CountOnMeTests.swift */; };
-		E96005522332713D0009507C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E96005502332713D0009507C /* Main.storyboard */; };
+		E960055423339BF80009507C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E960055323339BF80009507C /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,7 @@
 		E960054623326CD10009507C /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E960054823326CD10009507C /* CountOnMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeTests.swift; sourceTree = "<group>"; };
 		E960054A23326CD10009507C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E96005512332713D0009507C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../../../../Desktop/CountOnMe/CountOnMe/View/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E960055323339BF80009507C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 		E960051A233266CC0009507C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E96005502332713D0009507C /* Main.storyboard */,
+				E960055323339BF80009507C /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 				1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */,
 				E960051F2332682F0009507C /* Default-568h@2x.png in Resources */,
 				1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */,
-				E96005522332713D0009507C /* Main.storyboard in Resources */,
+				E960055423339BF80009507C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,14 +267,6 @@
 				1FA43BDC224E569A00F565CB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		E96005502332713D0009507C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E96005512332713D0009507C /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
