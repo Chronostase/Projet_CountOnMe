@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1FA43BE2224E569A00F565CB"
+               BlueprintIdentifier = "E960054523326CD10009507C"
                BuildableName = "CountOnMeTests.xctest"
                BlueprintName = "CountOnMeTests"
                ReferencedContainer = "container:CountOnMe.xcodeproj">
@@ -82,6 +82,13 @@
             ReferencedContainer = "container:CountOnMe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

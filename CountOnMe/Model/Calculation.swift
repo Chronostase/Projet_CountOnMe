@@ -4,7 +4,6 @@
 //
 //  Created by Thomas on 18/09/2019.
 //  Copyright © 2019 Vincent Saluzzo. All rights reserved.
-//
 
 import Foundation
 
@@ -37,7 +36,6 @@ class Calculation {
     func solveEquation() -> String {
         
         var operationToReduce = elements
-        
         while operationToReduce.count > 1 {
             
             guard let left = Int(operationToReduce[0]) else {

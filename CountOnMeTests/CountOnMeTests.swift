@@ -172,9 +172,8 @@ class CountOnMeTests: XCTestCase {
     func testGivenElementsCountIsThreeAndPressEqual_WhenAddingNewElement_ThenNumberStringShouldOnlyContainNewElement() {
         
         calculation.addToArray("1")
-        if calculation.canAddOperator {
-            calculation.addToArray(" / ")
-        }
+        XCTAssertTrue(calculation.canAddOperator)
+        calculation.addToArray(" / ")
         calculation.addToArray("1")
         if calculation.expressionHaveEnoughElement {
             if calculation.expressionIsCorrect {
@@ -186,8 +185,12 @@ class CountOnMeTests: XCTestCase {
             calculation.numberString.removeAll()
         }
         
+        calculation.addToArray("1")
+        
+        let element = calculation.elements.count
+        
+        XCTAssertEqual(element, 1)
     }
-    
     func testGivenElementsCountIsThreeAndRightElementsIsZero_WhenDivideAndPressEqual_ThenResultShouldBeError() {
         calculation.addToArray("1")
         if calculation.canAddOperator {
