@@ -49,24 +49,8 @@ class Calculation {
             guard let right = Int(operationToReduce[2]) else {
                 break
             }
-            
-            var result = 0
-            
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            case "x": result = left * right
-            case "/":
-                if right == 0 {
-                    sendNotification(name: "Can't divide by 0")
-                    let error = "= ERROR"
-                    numberString = error
-                    return error
-                } else {
-                    result = left / right
-                }
-            default:
-                return "ERROR"
+            guard let result = calculateResult(left, operand, right) else {
+                return "Error"
             }
             
             operationToReduce = Array(operationToReduce.dropFirst(3))
@@ -75,13 +59,34 @@ class Calculation {
         guard let solution = operationToReduce.first else {
             return "Error"
         }
-        print("result: \(solution)")
         
         numberString = " = \(solution)"
         return " = \(solution)"
     }
     
-    func sendNotification(name: String) {
+    private func calculateResult(_ left: Int,_ operand: String,_ right: Int) -> Int? {
+        var result = 0
+        
+        switch operand {
+        case "+": result = left + right
+        case "-": result = left - right
+        case "x": result = left * right
+        case "/":
+            if right == 0 {
+                sendNotification(name: "Can't divide by 0")
+                let error = "= ERROR"
+                numberString = error
+                return nil
+            } else {
+                result = left / right
+            }
+        default:
+            return nil
+        }
+        return result
+    }
+    
+    private func sendNotification(name: String) {
         let name = NSNotification.Name(name)
         let notification = Notification(name: name)
         NotificationCenter.default.post(notification)
