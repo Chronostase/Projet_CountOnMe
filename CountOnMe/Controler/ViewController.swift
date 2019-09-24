@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
-            return
+            return displayAlert("Can't add number")
         }
         checkExpressionHaveResult()
         negativeButton.tag = 1
