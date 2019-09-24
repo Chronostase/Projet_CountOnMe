@@ -18,21 +18,20 @@ class CountOnMeTests: XCTestCase {
         calculation = Calculation()
     }
     
-    func testGivenElementsCountIsZero_WhenAddingNumberAndOperator_ThenCountShouldBeTwooAndCanAddOperatorIsTrue() {
+    func testGivenElementsCountIsZero_WhenAddingNumberAndOperator_ThenCountShouldBeTwooAndExpressonIsCorrectIsTrue() {
         calculation.addToArray("1")
-        if calculation.canAddOperator {
-            calculation.addToArray(" + ")
-        }
+        XCTAssertTrue(calculation.expressionIsCorrect)
+        calculation.addToArray(" + ")
         
         let elements = calculation.elements
         
         XCTAssertEqual(elements.count, 2)
     }
     
-    func testGivenThereIsOperator_WhenCheckingIfCanAddOperator_ThenAddOperatorShouldBeFalse() {
+    func testGivenThereIsOperator_WhenCheckingIfExpressionIsCorrect_ThenExpressionIsCorrectShouldBeFalse() {
         calculation.addToArray(" + ")
         
-        let result = calculation.canAddOperator
+        let result = calculation.expressionIsCorrect
         
         XCTAssertFalse(result)
     }
@@ -95,97 +94,40 @@ class CountOnMeTests: XCTestCase {
         XCTAssertFalse(result)
     }
     
-    func testGivenElementsCountIsThreeAndOperandisMinus_WhenPressEqual_ThenResultShouldBeZero() {
+    func testGivenElementsCountIsThreeAndOperandisMinus_WhenSolveEquation_ThenResultShouldBeZero() {
         calculation.addToArray("1")
         calculation.addToArray(" - ")
         calculation.addToArray("1")
         
         let result = calculation.solveEquation()
         
-        XCTAssertEqual(result, " = 0")
+        XCTAssertEqual(result, "= 0")
     }
     
-    func testGivenElementsCountIsThreeAndOperandisPlus_WhenPressEqual_ThenResultShouldBeTwoo() {
+    func testGivenElementsCountIsThreeAndOperandisPlus_WhenSolveEquation_ThenResultShouldBeTwoo() {
         calculation.addToArray("1")
         calculation.addToArray(" + ")
         calculation.addToArray("1")
         
         let result = calculation.solveEquation()
         
-        XCTAssertEqual(result, " = 2")
+        XCTAssertEqual(result, "= 2")
     }
     
-    func testGivenElementsCountIsThreeAndOperandisMultiply_WhenPressEqual_ThenResultShouldBeOne() {
+    func testGivenElementsCountIsThreeAndOperandisMultiply_WhenSolveEquation_ThenResultShouldBeOne() {
         calculation.addToArray("1")
         calculation.addToArray(" x ")
         calculation.addToArray("1")
         
         let result = calculation.solveEquation()
         
-        XCTAssertEqual(result, " = 1")
+        XCTAssertEqual(result, "= 1")
     }
-    
-//    func testGivenElementsCountIsThreeAndOperandisUnknowOperator_WhenPressEqual_ThenResultShouldBeUnknownOperator() {
-//        calculation.addToArray("1")
-//        calculation.addToArray(" ! ")
-//        calculation.addToArray("1")
-//
-//        let result = calculation.solveEquation()
-//        let element = calculation.elements
-//
-//        XCTAssertEqual(element.count, 3)
-//        XCTAssertNotEqual(result.count, 1)
-//    }
-    
-    //MARK: - Need to change
-    
-//    func testGivenElementsCountIsTwoo_WhenPressEqual_ThenShouldEnterInBreak() {
-//        calculation.addToArray(" - ")
-//        calculation.addToArray(" - ")
-//
-//
-//        let element = calculation.elements
-//        let result = calculation.solveEquation()
-//
-//        XCTAssertEqual(element.count, 2)
-//        XCTAssertNotEqual(result.count, 1)
-//    }
-//
-//    func testGivenElementsCountIsThree_WhenPressEqual_ThenShouldEnterInBreak() {
-//        calculation.addToArray("1")
-//        calculation.addToArray(" - ")
-//        calculation.addToArray(" - ")
-//
-//
-//        let element = calculation.elements
-//        let result = calculation.solveEquation()
-//
-//        XCTAssertEqual(element.count, 3)
-//        XCTAssertNotEqual(result.count, 1)
-//    }
-    
-//    func testGivenThereIsNoElements_WhenSolveEquation_ThenSolutionShoulndBeEqualToElementFirst() {
-//        let result = calculation.solveEquation()
-//
-//        XCTAssertEqual(result, "Error")
-//    }
-//    func testGivenThereIsFirstIntNumberAndSecondIntNumber_WhenItIsNotInt_ThenShouldReturn() {
-//        calculation.addToArray("1")
-//        calculation.addToArray("-")
-//        calculation.addToArray("!")
-//
-//        let element = calculation.elements
-////        let result = calculation.solveEquation()
-//
-//        XCTAssertNotEqual(element.count, 3)
-////        XCTAssertNotEqual(result.count, 1)
-//
-//    }
     
     func testGivenElementsCountIsThreeAndPressEqual_WhenAddingNewElement_ThenNumberStringShouldOnlyContainNewElement() {
         
         calculation.addToArray("1")
-        XCTAssertTrue(calculation.canAddOperator)
+        XCTAssertTrue(calculation.expressionIsCorrect)
         calculation.addToArray(" / ")
         calculation.addToArray("1")
         if calculation.expressionHaveEnoughElement {
@@ -207,7 +149,7 @@ class CountOnMeTests: XCTestCase {
     
     func testGivenElementsCountIsThreeAndRightElementsIsZero_WhenDivideAndPressEqual_ThenResultShouldBeError() {
         calculation.addToArray("1")
-        if calculation.canAddOperator {
+        if calculation.expressionIsCorrect {
             calculation.addToArray(" / ")
         }
         calculation.addToArray("0")

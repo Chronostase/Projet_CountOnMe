@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         guard let operand = sender.currentTitle else {
             return displayAlert("Can't receive information from sender.currenTitle")
         }
-        if calculation.canAddOperator {
+        if calculation.expressionIsCorrect {
             addOperand("\(operand)")
         }
         
@@ -74,8 +74,6 @@ class ViewController: UIViewController {
         }
         
         guard calculation.expressionHaveEnoughElement else {
-            print(calculation.numberString)
-            print(calculation.elements)
             return displayAlert("Start a new calcul !")
         }
         

@@ -24,24 +24,18 @@ class Calculation {
     var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
-    
-    var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "x"
-    }
-    
+   
     var expressionHaveResult: Bool {
         return numberString.firstIndex(of: "=") != nil
     }
     
     private var operandsArray = [String]()
     
-    private var numbersArray = [String]()
+    var numbersArray = [String]()
+    
     //MARK: - Function
     
     func solveEquation() -> String {
-        
-//        var operandsArray = [String]()
-//        var numberArray = [String]()
         
         for element in elements {
             if element.isConvertibleToInt() {
@@ -49,75 +43,57 @@ class Calculation {
             } else {
                 operandsArray.append(element)
             }
+            print(operandsArray)
+            print(numbersArray)
+            print(numberString)
         }
-        guard let newArray = reduceToResult() else {
-            return "error"
-        }
-        
-        let result = newArray[0]
-        numberString = " = \(result[0])"
-        return String(" = \(result[0])")
+        return getResult()
     }
     
-    private func reduceToResult() -> [[String]]? {
-        guard let newArray = reduceOperation() else {
-            return nil
-        }
-        
-        var result = 0
-        var newNumberArray = newArray[0]
-        var newOperandsArray = newArray[1]
-        for (i, operand) in newOperandsArray.enumerated() {
+    private func reduceToResult() {
+        for (i, operand) in operandsArray.enumerated() {
             
             if operand == "-" || operand == "+" {
-                guard let firstIntNumber = Int(newNumberArray[i]), let secondIntNumber = Int(newNumberArray[i + 1])  else {
-                    return nil
+                guard let firstIntNumber = Int(numbersArray[i]), let secondIntNumber = Int(numbersArray[i + 1])  else {
+                    return
                 }
                 
                 if operand == "+" {
-                    result = firstIntNumber + secondIntNumber
-                    newNumberArray = refresh(at: i, result)
-                    newOperandsArray = refreshThe(at: i)
+                    numbersArray = refresh(at: i, firstIntNumber + secondIntNumber)
+                    operandsArray = refreshThe(at: i)
                     
                     return reduceToResult()
                     
                 } else if operand == "-" {
-                    
-                    result = firstIntNumber - secondIntNumber
-                    newNumberArray = refresh(at: i, result)
-                    newOperandsArray = refreshThe(at: i)
+                    numbersArray = refresh(at: i, firstIntNumber - secondIntNumber)
+                    operandsArray = refreshThe(at: i)
                     
                     return reduceToResult()
                 }
             }
         }
-        return [newNumberArray, newOperandsArray]
     }
     
-    private func reduceOperation() -> [[String]]? {
-//        var newNumberArray = numberArray
-//        var newOperandsArray = operandsArray
+    private func reduceOperation() {
         
         for (i, operand) in operandsArray.enumerated() {
             if operand == "x" || operand == "/" {
                 guard let firstIntNumber = Int(numbersArray[i]), let secondIntNumber = Int(numbersArray[i + 1]) else {
-                    return nil
+                    
+                    return
                 }
-                
                 if operand == "x" {
-                    let result = firstIntNumber * secondIntNumber
-                    numbersArray = refresh(at: i, result)
+                    numbersArray = refresh(at: i, firstIntNumber * secondIntNumber)
                     operandsArray = refreshThe(at: i)
                     
                     return reduceOperation()
                 } else if operand == "/" {
                     if secondIntNumber == 0 {
-                        errorCaseDivideByZero()
                         
-                        return nil
-                    } else {
-                        let result = firstIntNumber / secondIntNumber
-                        numbersArray = refresh(at: i, result)
+                        return  errorCaseDivideByZero()
+                    }
+                    else if secondIntNumber != 0 {
+                        numbersArray = refresh(at: i, firstIntNumber / secondIntNumber)
                         operandsArray = refreshThe(at: i)
                         
                         return reduceOperation()
@@ -125,13 +101,20 @@ class Calculation {
                 }
             }
         }
-        return [numbersArray, operandsArray]
+        reduceToResult()
     }
     
     //MARK: - Setup
     
+    private func getResult() -> String {
+        reduceOperation()
+        numberString = "= \(numbersArray[0])"
+        numbersArray.removeAll()
+        
+        return numberString
+    }
+    
     private func refresh(at i: Int,_ result: Int) -> [String]{
-//        var newNumberArray = numberArray
         
         numbersArray.remove(at: i + 1)
         numbersArray.remove(at: i)
@@ -149,8 +132,9 @@ class Calculation {
     
     private func errorCaseDivideByZero () {
         sendNotification(name: "Can't divide by 0")
-        let error = "= ERROR"
-        numberString = error
+        operandsArray.removeAll()
+        let error = ["ERROR"]
+        numbersArray = error
     }
     
     private func sendNotification(name: String) {
