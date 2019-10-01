@@ -163,4 +163,41 @@ class CountOnMeTests: XCTestCase {
             }
         }
     }
+    func testGivenThereIsComplexOperationWithMultipleOperator_WhenSolveEquation_ThenShouldHaveGoodResult() {
+        calculation.addToArray("2")
+        calculation.addToArray(" + ")
+        calculation.addToArray("3")
+        calculation.addToArray(" x ")
+        calculation.addToArray("6")
+        calculation.addToArray(" / ")
+        calculation.addToArray("2")
+        
+        let result = calculation.solveEquation()
+        
+        XCTAssertEqual(result, "= 11")
+    }
+    
+    func testGivenThereIsSimpleOperationwithNegativeNumber_WhenSolveEquation_ThenResultShouldBeRight() {
+        calculation.addToArray("1")
+        calculation.addToArray(" - ")
+        calculation.addToArray("-1")
+        calculation.addToArray(" x ")
+        calculation.addToArray("-2")
+        calculation.addToArray(" / ")
+        calculation.addToArray("-2")
+        
+        let result = calculation.solveEquation()
+        
+        XCTAssertEqual(result, "= 2")
+    }
+    
+    func testGivenDivideUnevenNumber_WhenSolveEquation_ThenResultShouldHaveComma() {
+        calculation.addToArray("3")
+        calculation.addToArray(" / ")
+        calculation.addToArray("2")
+        
+        let result = calculation.solveEquation()
+        
+        XCTAssertEqual(result, "= 1.5")
+    }
 }

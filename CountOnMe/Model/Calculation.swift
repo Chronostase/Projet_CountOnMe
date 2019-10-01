@@ -33,7 +33,7 @@ class Calculation {
     
     var numbersArray = [String]()
     
-    //MARK: - Function
+    //MARK: - Calculation Function
     
     func solveEquation() -> String {
         
@@ -43,9 +43,6 @@ class Calculation {
             } else {
                 operandsArray.append(element)
             }
-            print(operandsArray)
-            print(numbersArray)
-            print(numberString)
         }
         return getResult()
     }
@@ -54,18 +51,18 @@ class Calculation {
         for (i, operand) in operandsArray.enumerated() {
             
             if operand == "-" || operand == "+" {
-                guard let firstIntNumber = Int(numbersArray[i]), let secondIntNumber = Int(numbersArray[i + 1])  else {
+                guard let firstFloatNumber = Float(numbersArray[i]), let secondFloatNumber = Float(numbersArray[i + 1])  else {
                     return
                 }
                 
                 if operand == "+" {
-                    numbersArray = refresh(at: i, firstIntNumber + secondIntNumber)
+                    numbersArray = refresh(at: i, firstFloatNumber + secondFloatNumber)
                     operandsArray = refreshThe(at: i)
                     
                     return reduceToResult()
                     
                 } else if operand == "-" {
-                    numbersArray = refresh(at: i, firstIntNumber - secondIntNumber)
+                    numbersArray = refresh(at: i, firstFloatNumber - secondFloatNumber)
                     operandsArray = refreshThe(at: i)
                     
                     return reduceToResult()
@@ -78,22 +75,22 @@ class Calculation {
         
         for (i, operand) in operandsArray.enumerated() {
             if operand == "x" || operand == "/" {
-                guard let firstIntNumber = Int(numbersArray[i]), let secondIntNumber = Int(numbersArray[i + 1]) else {
+                guard let firstFloatNumber = Float(numbersArray[i]), let secondFloatNumber = Float(numbersArray[i + 1]) else {
                     
                     return
                 }
                 if operand == "x" {
-                    numbersArray = refresh(at: i, firstIntNumber * secondIntNumber)
+                    numbersArray = refresh(at: i, firstFloatNumber * secondFloatNumber)
                     operandsArray = refreshThe(at: i)
                     
                     return reduceOperation()
                 } else if operand == "/" {
-                    if secondIntNumber == 0 {
+                    if secondFloatNumber == 0 {
                         
                         return  errorCaseDivideByZero()
                     }
-                    else if secondIntNumber != 0 {
-                        numbersArray = refresh(at: i, firstIntNumber / secondIntNumber)
+                    else if secondFloatNumber != 0 {
+                        numbersArray = refresh(at: i, firstFloatNumber / secondFloatNumber)
                         operandsArray = refreshThe(at: i)
                         
                         return reduceOperation()
@@ -104,17 +101,19 @@ class Calculation {
         reduceToResult()
     }
     
-    //MARK: - Setup
-    
     private func getResult() -> String {
         reduceOperation()
-        numberString = "= \(numbersArray[0])"
+        let result = numbersArray[0].formatIfNeeded()
+        
+        numberString = "= \(result)"
         numbersArray.removeAll()
         
         return numberString
     }
     
-    private func refresh(at i: Int,_ result: Int) -> [String]{
+    //MARK: - Setup
+
+    private func refresh(at i: Int,_ result: Float) -> [String]{
         
         numbersArray.remove(at: i + 1)
         numbersArray.remove(at: i)
@@ -130,7 +129,7 @@ class Calculation {
         return operandsArray
     }
     
-    private func errorCaseDivideByZero () {
+    private func errorCaseDivideByZero() {
         sendNotification(name: "Can't divide by 0")
         operandsArray.removeAll()
         let error = ["ERROR"]

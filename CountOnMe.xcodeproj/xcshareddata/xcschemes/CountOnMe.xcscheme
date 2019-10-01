@@ -39,7 +39,8 @@
       </MacroExpansion>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E960054523326CD10009507C"
@@ -52,7 +53,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1FA43BED224E569A00F565CB"
+               BlueprintIdentifier = "E9E87971233CDA1E001BDE99"
                BuildableName = "CountOnMeUITests.xctest"
                BlueprintName = "CountOnMeUITests"
                ReferencedContainer = "container:CountOnMe.xcodeproj">
