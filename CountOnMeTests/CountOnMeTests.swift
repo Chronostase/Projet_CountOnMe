@@ -18,7 +18,9 @@ class CountOnMeTests: XCTestCase {
         calculation = Calculation()
     }
     
-    func testGivenElementsCountIsZero_WhenAddingNumberAndOperator_ThenCountShouldBeTwooAndExpressonIsCorrectIsTrue() {
+    // Test number element / Expression is correct
+    
+    func testGivenElementsCountIsZero_WhenAddingNumberAndOperator_ThenCountShouldBeTwooAndExpressionIsCorrectIsTrue() {
         calculation.addToArray("1")
         XCTAssertTrue(calculation.expressionIsCorrect)
         calculation.addToArray(" + ")
@@ -94,6 +96,31 @@ class CountOnMeTests: XCTestCase {
         XCTAssertFalse(result)
     }
     
+    func testGivenElementsCountIsThreeAndPressEqual_WhenAddingNewElement_ThenNumberStringShouldOnlyContainNewElement() {
+        
+        calculation.addToArray("1")
+        XCTAssertTrue(calculation.expressionIsCorrect)
+        calculation.addToArray(" / ")
+        calculation.addToArray("1")
+        if calculation.expressionHaveEnoughElement {
+            if calculation.expressionIsCorrect {
+                let _ = calculation.solveEquation()
+            }
+        }
+        
+        if calculation.expressionHaveResult {
+            calculation.numberString.removeAll()
+        }
+        
+        calculation.addToArray("1")
+        
+        let element = calculation.elements.count
+        
+        XCTAssertEqual(element, 1)
+    }
+    
+    // Calculation test
+    
     func testGivenElementsCountIsThreeAndOperandisMinus_WhenSolveEquation_ThenResultShouldBeZero() {
         calculation.addToArray("1")
         calculation.addToArray(" - ")
@@ -124,29 +151,6 @@ class CountOnMeTests: XCTestCase {
         XCTAssertEqual(result, "= 1")
     }
     
-    func testGivenElementsCountIsThreeAndPressEqual_WhenAddingNewElement_ThenNumberStringShouldOnlyContainNewElement() {
-        
-        calculation.addToArray("1")
-        XCTAssertTrue(calculation.expressionIsCorrect)
-        calculation.addToArray(" / ")
-        calculation.addToArray("1")
-        if calculation.expressionHaveEnoughElement {
-            if calculation.expressionIsCorrect {
-                let _ = calculation.solveEquation()
-            }
-        }
-        
-        if calculation.expressionHaveResult {
-            calculation.numberString.removeAll()
-        }
-        
-        calculation.addToArray("1")
-        
-        let element = calculation.elements.count
-        
-        XCTAssertEqual(element, 1)
-    }
-    
     func testGivenElementsCountIsThreeAndRightElementsIsZero_WhenDivideAndPressEqual_ThenResultShouldBeError() {
         calculation.addToArray("1")
         if calculation.expressionIsCorrect {
@@ -163,6 +167,9 @@ class CountOnMeTests: XCTestCase {
             }
         }
     }
+    
+    // Complexe operation
+    
     func testGivenThereIsComplexOperationWithMultipleOperator_WhenSolveEquation_ThenShouldHaveGoodResult() {
         calculation.addToArray("2")
         calculation.addToArray(" + ")
@@ -177,6 +184,8 @@ class CountOnMeTests: XCTestCase {
         XCTAssertEqual(result, "= 11")
     }
     
+    // Test negative number
+    
     func testGivenThereIsSimpleOperationwithNegativeNumber_WhenSolveEquation_ThenResultShouldBeRight() {
         calculation.addToArray("1")
         calculation.addToArray(" - ")
@@ -190,6 +199,8 @@ class CountOnMeTests: XCTestCase {
         
         XCTAssertEqual(result, "= 2")
     }
+    
+    // Test comma
     
     func testGivenDivideUnevenNumber_WhenSolveEquation_ThenResultShouldHaveComma() {
         calculation.addToArray("3")

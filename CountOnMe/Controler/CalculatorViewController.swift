@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -38,18 +38,6 @@ class ViewController: UIViewController {
         calculation.numberString += numberText
     }
     
-    @IBAction func tappedNegative(_ sender: UIButton) {
-        checkExpressionHaveResult()
-        if sender.tag == 0 {
-            textView.text.append("-")
-            calculation.numberString += ("-")
-        } else {
-            displayAlert("Need operator")
-            
-        }
-        sender.tag = 1
-    }
-    
     @IBAction func tappedOperand(_ sender: UIButton) {
         
         guard let operand = sender.currentTitle else {
@@ -60,12 +48,6 @@ class ViewController: UIViewController {
         }
         
         negativeButton.tag = 0
-    }
-    
-    @IBAction func tappedClear(_ sender: UIButton) {
-            negativeButton.tag = 0
-            textView.text.removeAll()
-            calculation.numberString.removeAll()
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
@@ -80,6 +62,25 @@ class ViewController: UIViewController {
         textView.text = calculation.solveEquation()
     }
     
+    @IBAction func tappedNegative(_ sender: UIButton) {
+        checkExpressionHaveResult()
+        if sender.tag == 0 {
+            textView.text.append("-")
+            calculation.numberString += ("-")
+        } else {
+            displayAlert("Need operator")
+        }
+        sender.tag = 1
+    }
+    
+    @IBAction func tappedClear(_ sender: UIButton) {
+            negativeButton.tag = 0
+            textView.text.removeAll()
+            calculation.numberString.removeAll()
+    }
+    
+    //MARK: - Setup
+    
     private func addScripture(data: String ) {
         textView.text.append(data)
         calculation.addToArray(" \(data) ")
@@ -87,7 +88,7 @@ class ViewController: UIViewController {
     
     private func checkExpressionHaveResult() {
         if calculation.expressionHaveResult {
-            negativeButton.tag = 0 
+            negativeButton.tag = 0
             textView.text.removeAll()
             calculation.numberString.removeAll()
         }
@@ -109,7 +110,6 @@ class ViewController: UIViewController {
         }
     }
     
-    //MARK: - Setup
     private func addobserverWhenDivideByZero(name: String) {
         NotificationCenter.default.addObserver(self, selector: #selector(divideByZeroAlert), name: NSNotification.Name(rawValue: name), object: nil)
     }

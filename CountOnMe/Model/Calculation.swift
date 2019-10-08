@@ -31,7 +31,7 @@ class Calculation {
     
     private var operandsArray = [String]()
     
-    var numbersArray = [String]()
+    private var numbersArray = [String]()
     
     //MARK: - Calculation Function
     
@@ -47,23 +47,33 @@ class Calculation {
         return getResult()
     }
     
+    private func getResult() -> String {
+           reduceOperation()
+           let result = numbersArray[0].formatIfNeeded()
+           
+           numberString = "= \(result)"
+           numbersArray.removeAll()
+           
+           return numberString
+       }
+    
     private func reduceToResult() {
         for (i, operand) in operandsArray.enumerated() {
             
             if operand == "-" || operand == "+" {
                 guard let firstFloatNumber = Float(numbersArray[i]), let secondFloatNumber = Float(numbersArray[i + 1])  else {
-                    return
+                    return assertionFailure("Can't convert number in float")
                 }
                 
                 if operand == "+" {
-                    numbersArray = refresh(at: i, firstFloatNumber + secondFloatNumber)
-                    operandsArray = refreshThe(at: i)
+                    numbersArray = refreshNumberArray(at: i, firstFloatNumber + secondFloatNumber)
+                    operandsArray = refreshOperandsArray(at: i)
                     
                     return reduceToResult()
                     
                 } else if operand == "-" {
-                    numbersArray = refresh(at: i, firstFloatNumber - secondFloatNumber)
-                    operandsArray = refreshThe(at: i)
+                    numbersArray = refreshNumberArray(at: i, firstFloatNumber - secondFloatNumber)
+                    operandsArray = refreshOperandsArray(at: i)
                     
                     return reduceToResult()
                 }
@@ -71,17 +81,18 @@ class Calculation {
         }
     }
     
+    // Sign priority with Multiply and Divide
+    
     private func reduceOperation() {
         
         for (i, operand) in operandsArray.enumerated() {
             if operand == "x" || operand == "/" {
                 guard let firstFloatNumber = Float(numbersArray[i]), let secondFloatNumber = Float(numbersArray[i + 1]) else {
-                    
-                    return
+                    return assertionFailure("Can't convert number in float")
                 }
                 if operand == "x" {
-                    numbersArray = refresh(at: i, firstFloatNumber * secondFloatNumber)
-                    operandsArray = refreshThe(at: i)
+                    numbersArray = refreshNumberArray(at: i, firstFloatNumber * secondFloatNumber)
+                    operandsArray = refreshOperandsArray(at: i)
                     
                     return reduceOperation()
                 } else if operand == "/" {
@@ -90,8 +101,8 @@ class Calculation {
                         return  errorCaseDivideByZero()
                     }
                     else if secondFloatNumber != 0 {
-                        numbersArray = refresh(at: i, firstFloatNumber / secondFloatNumber)
-                        operandsArray = refreshThe(at: i)
+                        numbersArray = refreshNumberArray(at: i, firstFloatNumber / secondFloatNumber)
+                        operandsArray = refreshOperandsArray(at: i)
                         
                         return reduceOperation()
                     }
@@ -101,19 +112,11 @@ class Calculation {
         reduceToResult()
     }
     
-    private func getResult() -> String {
-        reduceOperation()
-        let result = numbersArray[0].formatIfNeeded()
-        
-        numberString = "= \(result)"
-        numbersArray.removeAll()
-        
-        return numberString
-    }
-    
     //MARK: - Setup
 
-    private func refresh(at i: Int,_ result: Float) -> [String]{
+    //Refresh Numbers/Operands Array after remove element to get new and correct index
+    
+    private func refreshNumberArray(at i: Int,_ result: Float) -> [String]{
         
         numbersArray.remove(at: i + 1)
         numbersArray.remove(at: i)
@@ -122,7 +125,7 @@ class Calculation {
         return numbersArray
     }
     
-    private func refreshThe(at i: Int) -> [String] {
+    private func refreshOperandsArray(at i: Int) -> [String] {
         
         operandsArray.remove(at: i)
         
