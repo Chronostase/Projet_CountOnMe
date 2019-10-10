@@ -145,7 +145,7 @@ class Calculation {
         NotificationCenter.default.post(notification)
     }
     
-    func addToArray(_ data: String) {
+    func addData(_ data: String) {
         numberString.append(data)
     }
 }

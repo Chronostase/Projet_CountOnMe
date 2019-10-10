@@ -83,7 +83,7 @@ class CalculatorViewController: UIViewController {
     
     private func addScripture(data: String ) {
         textView.text.append(data)
-        calculation.addToArray(" \(data) ")
+        calculation.addData(" \(data) ")
     }
     
     private func checkExpressionHaveResult() {

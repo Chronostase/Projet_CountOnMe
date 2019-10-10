@@ -21,9 +21,9 @@ class CountOnMeTests: XCTestCase {
     // Test number element / Expression is correct
     
     func testGivenElementsCountIsZero_WhenAddingNumberAndOperator_ThenCountShouldBeTwooAndExpressionIsCorrectIsTrue() {
-        calculation.addToArray("1")
+        calculation.addData("1")
         XCTAssertTrue(calculation.expressionIsCorrect)
-        calculation.addToArray(" + ")
+        calculation.addData(" + ")
         
         let elements = calculation.elements
         
@@ -31,7 +31,7 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenThereIsOperator_WhenCheckingIfExpressionIsCorrect_ThenExpressionIsCorrectShouldBeFalse() {
-        calculation.addToArray(" + ")
+        calculation.addData(" + ")
         
         let result = calculation.expressionIsCorrect
         
@@ -39,8 +39,8 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsOne_WhenAddingMinus_ThenCountShouldBeTwo() {
-        calculation.addToArray("1")
-        calculation.addToArray(" - ")
+        calculation.addData("1")
+        calculation.addData(" - ")
         
         let elements = calculation.elements
         
@@ -48,10 +48,10 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsTwo_WhenAddingNumber_ThenCountShouldBeThree() {
-        calculation.addToArray("1")
-        calculation.addToArray(" + ")
+        calculation.addData("1")
+        calculation.addData(" + ")
         
-        calculation.addToArray("1")
+        calculation.addData("1")
         
         let elements = calculation.elements
         
@@ -59,9 +59,9 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsThree_WhenCheckExpressionHaveEnoughElement_ThenExpressionHaveEnoughElementShouldBeTrue() {
-        calculation.addToArray("1")
-        calculation.addToArray(" + ")
-        calculation.addToArray("1")
+        calculation.addData("1")
+        calculation.addData(" + ")
+        calculation.addData("1")
         
         let result = calculation.expressionHaveEnoughElement
         
@@ -69,8 +69,8 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCOuntIsTwoo_WhenCheckExpressionHaveEnoughElement_ThenExpressionHaveEnoughElementShouldBeFalse() {
-        calculation.addToArray("1")
-        calculation.addToArray(" + ")
+        calculation.addData("1")
+        calculation.addData(" + ")
         
         let result = calculation.expressionHaveEnoughElement
         
@@ -78,9 +78,9 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsThree_WhenCheckIfExpressionIsCorrect_ThenExpressionIsCorrectShouldBeTrue() {
-        calculation.addToArray("1")
-        calculation.addToArray(" + ")
-        calculation.addToArray("1")
+        calculation.addData("1")
+        calculation.addData(" + ")
+        calculation.addData("1")
         
         let result = calculation.expressionIsCorrect
         
@@ -88,8 +88,8 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsTwoo_WhenCheckIfExpressionIsCorrect_ThenExpressionIsCorrectShouldBeFalse() {
-        calculation.addToArray("1")
-        calculation.addToArray(" + ")
+        calculation.addData("1")
+        calculation.addData(" + ")
         
         let result = calculation.expressionIsCorrect
         
@@ -98,10 +98,10 @@ class CountOnMeTests: XCTestCase {
     
     func testGivenElementsCountIsThreeAndPressEqual_WhenAddingNewElement_ThenNumberStringShouldOnlyContainNewElement() {
         
-        calculation.addToArray("1")
+        calculation.addData("1")
         XCTAssertTrue(calculation.expressionIsCorrect)
-        calculation.addToArray(" / ")
-        calculation.addToArray("1")
+        calculation.addData(" / ")
+        calculation.addData("1")
         if calculation.expressionHaveEnoughElement {
             if calculation.expressionIsCorrect {
                 let _ = calculation.solveEquation()
@@ -112,7 +112,7 @@ class CountOnMeTests: XCTestCase {
             calculation.numberString.removeAll()
         }
         
-        calculation.addToArray("1")
+        calculation.addData("1")
         
         let element = calculation.elements.count
         
@@ -122,9 +122,9 @@ class CountOnMeTests: XCTestCase {
     // Calculation test
     
     func testGivenElementsCountIsThreeAndOperandisMinus_WhenSolveEquation_ThenResultShouldBeZero() {
-        calculation.addToArray("1")
-        calculation.addToArray(" - ")
-        calculation.addToArray("1")
+        calculation.addData("1")
+        calculation.addData(" - ")
+        calculation.addData("1")
         
         let result = calculation.solveEquation()
         
@@ -132,9 +132,9 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsThreeAndOperandisPlus_WhenSolveEquation_ThenResultShouldBeTwoo() {
-        calculation.addToArray("1")
-        calculation.addToArray(" + ")
-        calculation.addToArray("1")
+        calculation.addData("1")
+        calculation.addData(" + ")
+        calculation.addData("1")
         
         let result = calculation.solveEquation()
         
@@ -142,9 +142,9 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsThreeAndOperandisMultiply_WhenSolveEquation_ThenResultShouldBeOne() {
-        calculation.addToArray("1")
-        calculation.addToArray(" x ")
-        calculation.addToArray("1")
+        calculation.addData("1")
+        calculation.addData(" x ")
+        calculation.addData("1")
         
         let result = calculation.solveEquation()
         
@@ -152,11 +152,11 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testGivenElementsCountIsThreeAndRightElementsIsZero_WhenDivideAndPressEqual_ThenResultShouldBeError() {
-        calculation.addToArray("1")
+        calculation.addData("1")
         if calculation.expressionIsCorrect {
-            calculation.addToArray(" / ")
+            calculation.addData(" / ")
         }
-        calculation.addToArray("0")
+        calculation.addData("0")
         if calculation.expressionHaveEnoughElement {
             if calculation.expressionIsCorrect {
                 let _ = calculation.solveEquation()
@@ -171,13 +171,13 @@ class CountOnMeTests: XCTestCase {
     // Complexe operation
     
     func testGivenThereIsComplexOperationWithMultipleOperator_WhenSolveEquation_ThenShouldHaveGoodResult() {
-        calculation.addToArray("2")
-        calculation.addToArray(" + ")
-        calculation.addToArray("3")
-        calculation.addToArray(" x ")
-        calculation.addToArray("6")
-        calculation.addToArray(" / ")
-        calculation.addToArray("2")
+        calculation.addData("2")
+        calculation.addData(" + ")
+        calculation.addData("3")
+        calculation.addData(" x ")
+        calculation.addData("6")
+        calculation.addData(" / ")
+        calculation.addData("2")
         
         let result = calculation.solveEquation()
         
@@ -187,13 +187,13 @@ class CountOnMeTests: XCTestCase {
     // Test negative number
     
     func testGivenThereIsSimpleOperationwithNegativeNumber_WhenSolveEquation_ThenResultShouldBeRight() {
-        calculation.addToArray("1")
-        calculation.addToArray(" - ")
-        calculation.addToArray("-1")
-        calculation.addToArray(" x ")
-        calculation.addToArray("-2")
-        calculation.addToArray(" / ")
-        calculation.addToArray("-2")
+        calculation.addData("1")
+        calculation.addData(" - ")
+        calculation.addData("-1")
+        calculation.addData(" x ")
+        calculation.addData("-2")
+        calculation.addData(" / ")
+        calculation.addData("-2")
         
         let result = calculation.solveEquation()
         
@@ -203,9 +203,9 @@ class CountOnMeTests: XCTestCase {
     // Test comma
     
     func testGivenDivideUnevenNumber_WhenSolveEquation_ThenResultShouldHaveComma() {
-        calculation.addToArray("3")
-        calculation.addToArray(" / ")
-        calculation.addToArray("2")
+        calculation.addData("3")
+        calculation.addData(" / ")
+        calculation.addData("2")
         
         let result = calculation.solveEquation()
         
